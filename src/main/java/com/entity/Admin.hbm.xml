@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.entity.Admin" table="t_admin">
+		<id name="id" >
+			<column name="id"></column>
+			<generator class="native"></generator>
+		</id>
+
+		<property name="username" type="string">
+			<column name="username" length="20" not-null="true"></column>
+		</property>
+
+		<property name="password" type="string">
+			<column name="password" length="20" not-null="true"></column>
+		</property>
+		
+		<property name="name" type="string">
+			<column name="name" length="20" not-null="true"></column>
+		</property>
+		
+		<property name="flag" >
+			<column name="password" length="20" not-null="true"></column>
+		</property>
+		<property name="introduction" type="string">
+			<column name="introductaion" length="100" not-null="false"></column>
+		</property>
+	</class>
+
+</hibernate-mapping>
