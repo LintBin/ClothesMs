@@ -1,4 +1,4 @@
-package com.vo;
+package com.vo.jsp_between_action;
 
 public class User {
 	private String username;
@@ -16,8 +16,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 	
 	
 }

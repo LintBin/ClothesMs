@@ -8,8 +8,13 @@
  	<constant name="struts.enable.DynamicMethodInvocation" value="true"/> 
  	
 	<package name="lin" extends="struts-default" >
-		<action name="admin" class="com.action.AdminAction">
-			<result name="success">/jsp/success.jsp</result>
+		
+		<action name="admin_*" class="com.action.AdminAction" method="{1}">
+			<result name="admin_{1}_SUCCESS">/jsp/admin/result/admin_{1}_SUCCESS.jsp</result>
+			<result name="admin_{1}_FALSE">/jsp/admin/result/admin_{1}_FALSE.jsp</result>
 		</action>
+		
 	</package>
+	
+	
 </struts>    

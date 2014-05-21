@@ -23,10 +23,10 @@
   </head>
   
   <body>
-    <s:form action="admin" theme="simple" method="post">
+    <s:form action="admin_login" theme="simple" method="post">
 		用户名:<s:textfield name="user.username"></s:textfield><br>    
 		密&nbsp;码:<s:password name="user.password"></s:password><br>
-		<s:submit value="sumbit"></s:submit>   
+		<s:submit value="sumbit"></s:submit>
     </s:form>
   </body>
 </html>
