@@ -13,9 +13,11 @@
                ">
 	<context:annotation-config />
 	<context:component-scan base-package="com">
-	<context:include-filter type="regex" expression=".*Stub.*Repository"/>
+		<context:include-filter type="regex"
+			expression=".*Stub.*Repository" />
 	</context:component-scan>
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<value>classpath:jdbc.properties</value>
 		</property>
@@ -42,13 +44,13 @@
 				<prop key="hibernate.dialect">
 					org.hibernate.dialect.MySQL5Dialect
 				</prop>
+				<prop key="hibernate.current_session_context_class">jta</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>  
 			</props>
-
 		</property>
 		<property name="mappingResources">
 			<list>
+				<value>com/entity/Admin.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
