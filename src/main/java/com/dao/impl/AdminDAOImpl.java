@@ -16,9 +16,9 @@ public class AdminDAOImpl implements AdminDAO{
 	
 	
 	public List loadByUsernameAndPassword(String username,String password){
-		
-		List<Admin> list = (List<Admin>) hibernateTemplate.find("from Admin a where a.username=" + username +" and a.password=" + password);
-		
+	//	List<Admin> list = (List<Admin>) hibernateTemplate.find("from com.entity.Admin as a where a.username=" + username +" and a.password=" + password);
+		List<Admin> list = (List<Admin>) hibernateTemplate.find("from com.entity.Admin as a ");
+		System.out.println(list.get(0).getName());
 		return list;
 	}
 	
