@@ -9,23 +9,24 @@
 			<generator class="native"></generator>
 		</id>
 
-		<property name="username" type="string">
-			<column name="username" length="20" not-null="true"></column>
+		<property name="username">
+			<column name="username" not-null="true"></column>
 		</property>
 
 		<property name="password" >
 			<column name="password" ></column>
 		</property>
 		 
-		<property name="name" type="string">
-			<column name="name" length="20" not-null="true"></column>
+		<property name="name">
+			<column name="name" not-null="true"></column>
 		</property>
 		
 		<property name="flag" >
-			<column name="flag" length="20" not-null="true"></column>
-		</property>
-		<property name="introduction" type="string">
-			<column name="introduction" length="100" not-null="false"></column>
+			<column name="flag" not-null="true"></column>
+		</property> 
+		
+		<property name="introduction" >
+			<column name="introduction" not-null="false"></column>
 		</property>
 	</class>
 
