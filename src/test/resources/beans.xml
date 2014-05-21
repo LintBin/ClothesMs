@@ -49,6 +49,7 @@
 		</property>
 		<property name="mappingResources">
 			<list>
+				<value>com/entity/Admin.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

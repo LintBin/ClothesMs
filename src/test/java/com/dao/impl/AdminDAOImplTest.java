@@ -32,6 +32,7 @@ public class AdminDAOImplTest extends AbstractTransactionalJUnit4SpringContextTe
 	@Test
 	public void loadByUsernameAndPassword(){
 		List<Admin> list = adminDAOImpl.loadByUsernameAndPassword("admin","123");
+		System.out.println(list.get(0).getName());
 		assertThat(list,notNullValue());
 		
 	}
