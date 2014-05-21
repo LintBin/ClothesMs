@@ -1,6 +1,7 @@
 package com.dao.impl;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
@@ -32,9 +33,8 @@ public class AdminDAOImplTest extends AbstractTransactionalJUnit4SpringContextTe
 	@Test
 	public void loadByUsernameAndPassword(){
 		List<Admin> list = adminDAOImpl.loadByUsernameAndPassword("admin","123");
-		System.out.println(list.get(0).getName());
-		assertThat(list,notNullValue());
-		
+	//	assertThat(list.get(0).getName(),is("lin"));
+		assertEquals(list.get(0).getName(),"lin");
 	}
 	
 	
