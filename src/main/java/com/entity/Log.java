@@ -30,5 +30,4 @@ public class Log {
 	public void setSaveTime(Date saveTime) {
 		this.saveTime = saveTime;
 	}
-
 }

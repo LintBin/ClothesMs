@@ -11,7 +11,7 @@ import com.dao.AdminDAO;
 import com.entity.Admin;
 import com.service.AdminService;
 import com.vo.LoginVo;
-import com.vo.jsp_between_action.User;
+import com.vo.User;
 
 
 @Component("adminServiceImpl")

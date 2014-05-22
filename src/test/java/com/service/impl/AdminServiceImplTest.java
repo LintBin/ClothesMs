@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.service.impl.AdminServiceImpl;
 import com.vo.LoginVo;
-import com.vo.jsp_between_action.User;
+import com.vo.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:beans.xml")

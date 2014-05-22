@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.vo.jsp_between_action.User;
+import com.vo.User;
 
 
 @Component("admin")
