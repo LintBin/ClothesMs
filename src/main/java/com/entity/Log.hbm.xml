@@ -4,30 +4,23 @@
           "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
+
 	<class name="com.entity.Log" table="t_log">
 		<id name="id" >
 			<column name="id"></column>
 			<generator class="native"></generator>
 		</id>
-
-		<property name="username">
-			<column name="username" not-null="true"></column>
+		
+		<property name="log" >
+			<column name="log" not-null="true"></column>
 		</property>
 
-		<property name="password" >
-			<column name="password" ></column>
+		<property name="saveTime" >
+			<column name="saveTime" ></column>
 		</property>
 		 
-		<property name="name">
-			<column name="name" not-null="true"></column>
-		</property>
-		
-		<property name="flag" >
-			<column name="flag" not-null="true"></column>
-		</property> 
-		
-		<property name="introduction" >
-			<column name="introduction" not-null="false"></column>
+		<property name="adminId">
+			<column name="name" not-null="true" ></column>
 		</property>
 	</class>
 
