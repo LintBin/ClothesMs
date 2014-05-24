@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx" 
-	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
                http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                http://www.springframework.org/schema/context
@@ -13,11 +11,12 @@
                http://www.springframework.org/schema/aop
                http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
                ">
-	<context:annotation-config />
+	 <context:annotation-config /> 
 	<context:component-scan base-package="com">
 		<context:include-filter type="regex"
-			expression=".*Stub.*Repository" />
+			expression=".*Stub.*Repository" /> 
 	</context:component-scan>
+	
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
@@ -48,20 +47,24 @@
 				</prop>
 				<prop key="hibernate.current_session_context_class">jta</prop>
 				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
+
 		</property>
 		<property name="mappingResources">
 			<list>
 				<value>com/entity/Admin.hbm.xml</value>
+				<value>com/entity/Log.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
-	<bean id="txManager"
+	<tx:annotation-driven transaction-manager="txManager"/>
+	 <bean id="txManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sf" />
 	</bean>
-	<tx:annotation-driven transaction-manager="txManager" />
-
-
-
+ 
+	
+	 
+	
 </beans>    

@@ -40,7 +40,10 @@ public class AdminServiceImpl implements AdminService{
 		return loginVo;
 	}
 	@Override
-	public String add(){
+	public String add(Admin admin){
+		
+		adminDAOImpl.save(admin);
+		
 		return null;
 	}
 	

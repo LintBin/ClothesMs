@@ -19,9 +19,7 @@
 			<column name="saveTime" ></column>
 		</property>
 		 
-		<property name="adminId">
-			<column name="name" not-null="true" ></column>
-		</property>
+		<!-- <many-to-one name="admin" column="adminId" cascade="save-update"  class="com.entity.Admin" not-null="true" insert="false"></many-to-one>  -->
+		<many-to-one name="admin" column="adminId" cascade = "none"  class="com.entity.Admin" not-null="true" ></many-to-one> 
 	</class>
-
 </hibernate-mapping>

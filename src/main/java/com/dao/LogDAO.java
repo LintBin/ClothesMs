@@ -1,6 +1,7 @@
 package com.dao;
 
+import com.entity.Log;
+
 public interface LogDAO {
-	public void save();
-	
+	public void save(Log log);
 }

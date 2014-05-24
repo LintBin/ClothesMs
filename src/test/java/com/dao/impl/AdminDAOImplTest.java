@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThat;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,8 +19,9 @@ import com.dao.AdminDAO;
 import com.entity.Admin;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:beans.xml")
-public class AdminDAOImplTest extends AbstractTransactionalJUnit4SpringContextTests {
+@ContextConfiguration(locations = "classpath:applicationContext.xml")
+@Transactional
+public class AdminDAOImplTest {
 	@Resource(name = "adminDAOImpl")
 	private AdminDAO adminDAOImpl;
 
@@ -36,6 +38,15 @@ public class AdminDAOImplTest extends AbstractTransactionalJUnit4SpringContextTe
 		assertEquals(list.get(0).getName(),"lin");
 	}
 	
+	@Test
+	public void save(){
+		Admin admin = new Admin();
+		admin.setIntroduction("123");
+		admin.setName("bin");
+		admin.setPassword("123344445");
+		admin.setUsername("bin");
+		adminDAOImpl.save(admin);
+	}
 	
 	
 	

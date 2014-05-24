@@ -1,11 +1,21 @@
 package com.entity;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 public class Log {
 	private int Id;
 	private String log;
 	private Date saveTime;
+	private Admin admin;
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
 
 	public int getId() {
 		return Id;
