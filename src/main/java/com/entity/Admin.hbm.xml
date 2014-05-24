@@ -21,9 +21,9 @@
 		<property name="name">
 			<column name="name" not-null="true"></column>
 		</property>
-		
+		 
 		<property name="flag" >
-			<column name="flag" not-null="true"></column>
+			<column name="flag" ></column>
 		</property> 
 		
 		<property name="introduction" >

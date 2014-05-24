@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.dao.AdminDAO;
 import com.entity.Admin;
 import com.service.AdminService;
+import com.util.AdminReturn;
 import com.vo.LoginVo;
 import com.vo.User;
 
@@ -17,15 +18,9 @@ import com.vo.User;
 @Component("adminServiceImpl")
 @Transactional
 public class AdminServiceImpl implements AdminService{
-	private AdminDAO adminDAOImpl;
-
-	public AdminDAO getAdminDAOImpl() {
-		return adminDAOImpl;
-	}
 	@Resource(name="adminDAOImpl")
-	public void setAdminDAOImpl(AdminDAO adminDAOImpl) {
-		this.adminDAOImpl = adminDAOImpl;
-	}
+	private AdminDAO adminDAOImpl;
+	
 	
 	@Override
 	public LoginVo login(User user){
@@ -35,16 +30,31 @@ public class AdminServiceImpl implements AdminService{
 			loginVo.setFlag(true);
 		}else{
 			loginVo.setFlag(false);
-			loginVo.setErrorWords("该用户不存在或者密码错误");
+			loginVo.setErrorWords(AdminReturn.loginError);
 		}
 		return loginVo;
 	}
+	
 	@Override
 	public String add(Admin admin){
-		
-		adminDAOImpl.save(admin);
-		
+		List<Admin> list = adminDAOImpl.loadByUsername(admin.getUsername());
+		if(list.size() == 0){
+			adminDAOImpl.save(admin);
+		}else{
+			return AdminReturn.hasUserNameReturn;
+		}
 		return null;
+	}
+	
+	@Override
+	public String delete(String username) {
+		List<Admin> list = adminDAOImpl.loadByUsername(username);
+		if(list.size()<1){
+			return AdminReturn.noThisUsername; 
+		}else{
+			adminDAOImpl.delete(list.get(0).getId());
+			return null;
+		}
 	}
 	
 }

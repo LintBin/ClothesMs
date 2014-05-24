@@ -25,13 +25,6 @@ public class AdminDAOImplTest {
 	@Resource(name = "adminDAOImpl")
 	private AdminDAO adminDAOImpl;
 
-	public AdminDAO getAdminDAOImpl() {
-		return adminDAOImpl;
-	}
-
-	public void setAdminDAOImpl(AdminDAO adminDAOImpl) {
-		this.adminDAOImpl = adminDAOImpl;
-	}
 	@Test
 	public void loadByUsernameAndPassword(){
 		List<Admin> list = adminDAOImpl.loadByUsernameAndPassword("admin","123");
@@ -48,6 +41,17 @@ public class AdminDAOImplTest {
 		adminDAOImpl.save(admin);
 	}
 	
+	@Test
+	public void delete(){
+		Admin admin = new Admin();
+		admin.setId(78);
+		adminDAOImpl.delete(1);
+	}
 	
+	@Test
+	public void findByUsername(){
+		List<Admin> list = adminDAOImpl.loadByUsername("admin");
+		assertEquals(list.get(0).getId(),1);
+	}
 	
 }

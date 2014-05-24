@@ -7,4 +7,5 @@ import com.vo.User;
 public interface AdminService {
 	public LoginVo login(User user);
 	public String add(Admin admin);
+	public String delete(String username);
 }

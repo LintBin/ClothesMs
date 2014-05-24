@@ -99,11 +99,7 @@
 			<artifactId>javax.servlet.jsp.jstl</artifactId>
 			<version>1.2.2</version>
 		</dependency>
-		<dependency>
-		  <groupId>com.mchange</groupId>
-		  <artifactId>c3p0</artifactId>
-		  <version>0.9.5-pre3</version>
-		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>

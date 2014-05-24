@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.entity.Admin;
 import com.service.AdminService;
+import com.util.AdminReturn;
 import com.vo.LoginVo;
 import com.vo.User;
 
@@ -41,7 +42,10 @@ public class AdminServiceImplTest {
 		admin.setName("bin");
 		admin.setPassword("312132321313");
 		admin.setUsername("bin");
-		adminServiceImpl.add(admin);
+		
+		String returnStr = adminServiceImpl.add(admin);
+		assertEquals(returnStr, AdminReturn.hasUserNameReturn);
+		
 	}
 
 }
