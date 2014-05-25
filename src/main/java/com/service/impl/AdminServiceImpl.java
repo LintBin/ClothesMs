@@ -9,9 +9,13 @@ import org.springframework.stereotype.Component;
 
 import com.dao.AdminDAO;
 import com.dao.LogDAO;
+import com.dao.SuperLogDAO;
 import com.entity.Admin;
 import com.entity.Log;
+import com.entity.SuperAdmin;
+import com.entity.SuperLog;
 import com.service.AdminService;
+import com.util.admin.AdminLogMessage;
 import com.util.admin.AdminReturn;
 import com.vo.LoginVo;
 import com.vo.User;
@@ -23,48 +27,89 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDAO adminDAOImpl;
 	
 	@Resource
-	private LogDAO logDAOimpl;
+	private SuperLogDAO superLogDAOImpl;
 	
-	private Log log = new Log();
+	private SuperLog superLog = new SuperLog();
+	
+	//登陆操作
 	@Override
 	public LoginVo login(User user) {
 		LoginVo loginVo = new LoginVo();
 		List<Admin> list = adminDAOImpl.loadByUsernameAndPassword(
 				user.getUsername(), user.getPassword());
-		if (list.size() > 0) {
+		//检查查询到的list里面是否有Admin而且Admin中的flag是否为1
+		if (list.size() > 0 && list.get(0).getFlag() == 0) {
 			loginVo.setFlag(true);
 		} else {
+			//list没有对象或者flag为0，则不能登陆
 			loginVo.setFlag(false);
 			loginVo.setErrorWords(AdminReturn.loginError);
 		}
 		return loginVo;
 	}
-
+	
+	//添加管理员
 	@Override
-	public String add(Admin admin,Admin operator) {
+	public String add(Admin admin,SuperAdmin operator) {
+		//检查是否存在这个Admin
 		List<Admin> list = adminDAOImpl.loadByUsername(admin.getUsername());
 		if (list.size() == 0) {
+			//添加Admin
 			adminDAOImpl.save(admin);
+			
+			//添加Log
+			superLog.setSuperAdmin(operator);
+			superLog.setLog(AdminLogMessage.saveAdmin_SUCCESS + admin.getUsername());
+			superLogDAOImpl.save(superLog);
 		} else {
 			return AdminReturn.hasUserNameReturn;
 		}
 		return null;
 	}
 
+	//删除管理员
 	@Override
-	public String delete(String username ,Admin Operator) {
+	public String delete(String username ,SuperAdmin Operator) {
+		//检测是否存在这个Admin
 		List<Admin> list = adminDAOImpl.loadByUsername(username);
 		if (list.size() < 1) {
 			return AdminReturn.noThisUsername;
 		}else {
+			//删除dmin
 			Admin admin = list.get(0);
 			admin.setFlag(0);
 			adminDAOImpl.updateFlag(admin);
-			log.setAdmin(admin);
-			log.setLog(log);
-			logDAOimpl.save(log);
+			
+			//添加Log
+			superLog.setSuperAdmin(Operator);
+			superLog.setLog(AdminLogMessage.deleteAmin_SUCCESS + admin.getUsername());
+			superLogDAOImpl.save(superLog);
 			return null;
 		}
+	}
+
+	//修改管理员信息
+	@Override
+	public String update(Admin admin, SuperAdmin operator) {
+		//检测是否存在这个Admin
+		List<Admin> list = adminDAOImpl.loadByUsername(admin.getUsername());
+		if (list.size() >0 ) {
+			Admin was_found = list.get(0);
+			//进行Id检查是否一致,若一致，则进行修改
+			if(admin.getId() == was_found.getId()){
+				was_found.setIntroduction(admin.getIntroduction());
+				was_found.setFlag(admin.getFlag());
+				was_found.setName(admin.getName());
+				was_found.setPassword(admin.getPassword());
+				adminDAOImpl.update(was_found);
+				return null;
+			}else{
+				return AdminReturn.IdConfict;
+			}
+		}else {
+			return AdminReturn.noThisUsername;
+		}
+		
 	}
 
 }

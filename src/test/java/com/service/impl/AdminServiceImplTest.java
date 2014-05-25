@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.entity.Admin;
+import com.entity.SuperAdmin;
 import com.service.AdminService;
 import com.util.admin.AdminReturn;
 import com.vo.LoginVo;
@@ -40,13 +41,36 @@ public class AdminServiceImplTest {
 		admin.setPassword("312132321313");
 		admin.setUsername("hong");
 		
-		String returnStr = adminServiceImpl.add(admin);
+		SuperAdmin operator = new SuperAdmin();
+		operator.setId(1);
+		
+		String returnStr = adminServiceImpl.add(admin,operator);
 		
 	}
 	@Test
 	public void delete(){
-		String returnStr = adminServiceImpl.delete("asdad");
-		assertEquals(returnStr,AdminReturn.noThisUsername);
+		SuperAdmin operator = new SuperAdmin();
+		operator.setId(1);
+		
+		String returnStr = adminServiceImpl.delete("hong",operator);
+		assertEquals(returnStr,null);
+	//	assertEquals(returnStr,AdminReturn.noThisUsername);
 	}
 	
+	@Test
+	public void update(){
+		SuperAdmin operator = new SuperAdmin();
+		operator.setId(1);
+		
+		Admin admin = new Admin();
+		admin.setFlag(1);
+		admin.setId(2);
+		admin.setIntroduction("update");
+		admin.setName("bin");
+		admin.setPassword("000");
+		admin.setUsername("hong");
+		
+		String str = adminServiceImpl.update(admin, operator);
+		System.out.println(str);
+	}
 }

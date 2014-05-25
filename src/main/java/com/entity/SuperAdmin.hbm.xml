@@ -4,8 +4,7 @@
           "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.entity.Admin" table="t_Admin">
-	
+	<class name="com.entity.SuperAdmin" table="t_admin">
 		<id name="id" >
 			<column name="id"></column>
 			<generator class="native"></generator>
@@ -24,12 +23,10 @@
 		</property>
 		 
 		<property name="flag" >
-			<column name="flag" not-null="true"></column>
+			<column name="flag" ></column>
 		</property> 
 		
-		<property name="introduction" >
-			<column name="introduction" not-null="false"></column>
-		</property>
+		
 	</class>
 
 </hibernate-mapping>

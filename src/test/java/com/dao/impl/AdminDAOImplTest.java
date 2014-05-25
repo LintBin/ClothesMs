@@ -43,11 +43,17 @@ public class AdminDAOImplTest {
 	
 	@Test
 	public void updateFlag(){
+		
 		Admin admin = new Admin();
-		admin.setUsername("hong");  
+		admin.setUsername("hong");
+		admin.setId(2);
+		admin.setIntroduction("updateFlag");
+		admin.setName("lll");
+		admin.setPassword("binllll");
+
 		adminDAOImpl.updateFlag(admin);
 		List<Admin> list = adminDAOImpl.loadByUsername("hong");
-		assertEquals(list.get(0),0);
+		assertEquals(list.get(0).getFlag(),0);
 	}
 	
 	@Test
@@ -56,4 +62,18 @@ public class AdminDAOImplTest {
 		assertEquals(list.get(0).getId(),1);
 	}
 	
+	@Test 
+	public void update(){
+		//Admin创建
+		Admin admin = new Admin();
+		admin.setFlag(1);
+		admin.setId(2);
+		admin.setIntroduction("00000000000");
+		admin.setName("bin");
+		admin.setPassword("123");
+		admin.setUsername("admin");
+		
+		adminDAOImpl.update(admin);
+		List<Admin> list = adminDAOImpl.loadByUsername("admin");
+	}
 }

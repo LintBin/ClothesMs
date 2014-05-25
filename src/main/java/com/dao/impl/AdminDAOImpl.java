@@ -3,12 +3,7 @@ package com.dao.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.transaction.Transactional;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +12,6 @@ import com.entity.Admin;
 
 @Component("adminDAOImpl")
 public class AdminDAOImpl implements AdminDAO{
-	@Resource
-	private SessionFactory sessionFactory;
 	
 	@Resource
 	private HibernateTemplate hibernateTemplate;
@@ -28,24 +21,24 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 
 	@Override
-	public String save(Admin admin) {
+	public void save(Admin admin) {
 		hibernateTemplate.save(admin);
-		return null;
 	}
 	
 	@Override
-	public String updateFlag(Admin admin){
+	public void updateFlag(Admin admin){
 		hibernateTemplate.update(admin);
-		return null;
 	}
 
 	@Override
-	public List loadByUsername(String username) {
+	public List<Admin> loadByUsername(String username) {
 		List<Admin> list = (List<Admin>) hibernateTemplate.find("from Admin as a where a.username = ?", username );
 		return list;
 	}
 	
-	
-	
+	@Override
+	public void update(Admin admin){
+		hibernateTemplate.update(admin);
+	}
 	
 }

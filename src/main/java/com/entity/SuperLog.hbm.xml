@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.entity.SuperLog" table="t_super_log">
+		<id name="id" >
+			<column name="id"></column>
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="log" >
+			<column name="log" not-null="true"></column>
+		</property>
+
+		<property name="saveTime" >
+			<column name="saveTime" not-null="true" ></column>
+		</property>
+		 
+		<!-- <many-to-one name="admin" column="adminId" cascade="save-update"  class="com.entity.Admin" not-null="true" insert="false"></many-to-one>  -->
+		<many-to-one name="superAdmin" column="superAdminId" cascade = "none"  class="com.entity.SuperAdmin" not-null="true" ></many-to-one> 
+	</class>
+	
+</hibernate-mapping>

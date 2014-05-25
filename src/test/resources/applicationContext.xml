@@ -37,6 +37,8 @@
 			<list>
 				<value>com/entity/Admin.hbm.xml</value>
 				<value>com/entity/Log.hbm.xml</value>
+				<value>com/entity/SuperLog.hbm.xml</value>
+				<value>com/entity/SuperAdmin.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -49,6 +51,7 @@
                 hibernate.autoReconnect = true
                 hibernate.connection.autocommit = true
                 current.session.context = thread
+                
 			</value>
 		</property>
 	</bean>	
