@@ -1,10 +1,8 @@
 package com.service.impl;
 
-import javax.annotation.Resource;
-
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+
+import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.entity.Admin;
 import com.service.AdminService;
-import com.util.AdminReturn;
+import com.util.admin.AdminReturn;
 import com.vo.LoginVo;
 import com.vo.User;
 
@@ -28,7 +26,6 @@ public class AdminServiceImplTest {
 		User user = new User();
 		user.setUsername("admin");
 		user.setPassword("124");
-		
 		LoginVo loginVo = adminServiceImpl.login(user);
 		assertEquals(loginVo.isFlag(), false);
 
@@ -41,11 +38,15 @@ public class AdminServiceImplTest {
 		admin.setIntroduction("haha");
 		admin.setName("bin");
 		admin.setPassword("312132321313");
-		admin.setUsername("bin");
+		admin.setUsername("hong");
 		
 		String returnStr = adminServiceImpl.add(admin);
-		assertEquals(returnStr, AdminReturn.hasUserNameReturn);
 		
 	}
-
+	@Test
+	public void delete(){
+		String returnStr = adminServiceImpl.delete("asdad");
+		assertEquals(returnStr,AdminReturn.noThisUsername);
+	}
+	
 }

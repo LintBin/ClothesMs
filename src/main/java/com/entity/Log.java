@@ -8,7 +8,11 @@ public class Log {
 	private String log;
 	private Date saveTime;
 	private Admin admin;
-
+	
+	public Log(){
+		this.saveTime = new Date();
+		this.saveTime.getTime();
+	}
 	public Admin getAdmin() {
 		return admin;
 	}

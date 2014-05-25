@@ -6,6 +6,6 @@ import com.vo.User;
 
 public interface AdminService {
 	public LoginVo login(User user);
-	public String add(Admin admin);
-	public String delete(String username);
+	public String add(Admin admin , Admin operator);
+	public String delete(String username,Admin operator);
 }

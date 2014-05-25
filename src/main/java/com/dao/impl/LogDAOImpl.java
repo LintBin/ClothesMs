@@ -13,7 +13,6 @@ import com.dao.LogDAO;
 import com.entity.Log;
 
 @Component("logDAOImpl")
-
 public class LogDAOImpl implements LogDAO {
 	@Autowired
 	private SessionFactory sessionFactory;

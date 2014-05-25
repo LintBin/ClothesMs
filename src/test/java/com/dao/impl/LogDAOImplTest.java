@@ -34,9 +34,9 @@ public class LogDAOImplTest {
 		Admin admin = new Admin();
 		admin.setId(1);
 		log.setAdmin(admin);
-		Date date = new Date();
-		date.getTime();
-		log.setSaveTime(date);
+		/*Date date = new Date();
+		date.getTime();*/
+	//	log.setSaveTime(date);
 		log.setLog("保存信息");
 		
 		logDAOImpl.save(log);

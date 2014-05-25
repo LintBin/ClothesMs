@@ -42,10 +42,12 @@ public class AdminDAOImplTest {
 	}
 	
 	@Test
-	public void delete(){
+	public void updateFlag(){
 		Admin admin = new Admin();
-		admin.setId(78);
-		adminDAOImpl.delete(1);
+		admin.setUsername("hong");  
+		adminDAOImpl.updateFlag(admin);
+		List<Admin> list = adminDAOImpl.loadByUsername("hong");
+		assertEquals(list.get(0),0);
 	}
 	
 	@Test

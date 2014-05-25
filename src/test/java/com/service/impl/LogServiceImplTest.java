@@ -25,11 +25,11 @@ public class LogServiceImplTest {
 		Log log = new Log();
 		Admin admin = new Admin();
 		admin.setId(1);
-		admin.setFlag(1);
+		/*admin.setFlag(1);
 		admin.setIntroduction("haha");
 		admin.setName("bin");
 		admin.setPassword("312132321313");
-		admin.setUsername("bin");
+		admin.setUsername("bin");*/
 		log.setAdmin(admin);
 		Date date = new Date();
 		date.getTime();

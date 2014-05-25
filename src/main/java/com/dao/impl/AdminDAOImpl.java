@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
@@ -33,8 +34,8 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 	
 	@Override
-	public String delete(int adminId){
-
+	public String updateFlag(Admin admin){
+		hibernateTemplate.update(admin);
 		return null;
 	}
 
