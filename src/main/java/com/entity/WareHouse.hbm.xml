@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.entity.WareHouse" table="t_wareHouse">
+	
+		<id name="id" >
+			<column name="Id"></column>
+			<generator class="native"></generator>
+		</id>
+
+		<property name="docu_number">
+			<column name="docu_number" not-null="true"></column>
+		</property>
+
+		<property name="contact_phone" >
+			<column name="contact_phone" not-null="true" ></column>
+		</property>
+		 
+		<property name="name">
+			<column name="name" not-null="true"></column>
+		</property>
+		 
+		<property name="flag" >
+			<column name="flag" not-null="true"></column>
+		</property> 
+		
+		<property name="contact" >
+			<column name="contact" not-null="true"></column>
+		</property>
+		
+		<property name="total_storage">
+			<column name="total_storage" not-null="true"></column>
+		</property>
+			
+	</class>
+
+</hibernate-mapping>

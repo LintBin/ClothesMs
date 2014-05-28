@@ -11,7 +11,12 @@
 		
 		<action name="admin_*" class="com.action.AdminAction" method="{1}">
 			<result name="admin_{1}_SUCCESS">/jsp/admin/result/admin_{1}_SUCCESS.jsp</result>
-			<result name="admin_{1}_FALSE">/jsp/admin/result/admin_{1}_FALSE.jsp</result>
+			<result name="admin_{1}_ERROR">/jsp/admin/result/admin_{1}_ERROR.jsp</result>
+		</action>
+		
+		<action name="superAdmin_*" class="com.action.SuperAdminAction" method="{1}">
+			<result name="admin_{1}_SUCCESS">/jsp/superAdmin/result/superAdmin_{1}_SUCCESS.jsp</result>
+			<result name="admin_{1}_ERROR">/jsp/superAdmin/result/superAdmin_{1}_ERROR.jsp</result>
 		</action>
 		
 	</package>

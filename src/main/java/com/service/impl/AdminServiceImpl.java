@@ -17,7 +17,7 @@ import com.entity.SuperLog;
 import com.service.AdminService;
 import com.util.admin.AdminLogMessage;
 import com.util.admin.AdminReturn;
-import com.vo.LoginVo;
+import com.vo.service.LoginVo;
 import com.vo.User;
 
 @Component("adminServiceImpl")
@@ -37,12 +37,16 @@ public class AdminServiceImpl implements AdminService {
 		LoginVo loginVo = new LoginVo();
 		List<Admin> list = adminDAOImpl.loadByUsernameAndPassword(
 				user.getUsername(), user.getPassword());
-		//检查查询到的list里面是否有Admin而且Admin中的flag是否为1
-		if (list.size() > 0 && list.get(0).getFlag() == 0) {
-			loginVo.setFlag(true);
+		//检查查询到的list里面是否有Admin
+		if (list.size() > 0 ) {
+			//Admin中的flag是否为1,为1则返回要查询的Admin,否则返回错误信息
+			if(list.get(0).getFlag() == 1){
+				loginVo.setAdmin(list.get(0));
+			}else{
+				loginVo.setErrorWords(AdminReturn.has_been_deleted);
+			}
 		} else {
-			//list没有对象或者flag为0，则不能登陆
-			loginVo.setFlag(false);
+			//list没有对象，不能登陆，返回错误信息的
 			loginVo.setErrorWords(AdminReturn.loginError);
 		}
 		return loginVo;
@@ -97,11 +101,18 @@ public class AdminServiceImpl implements AdminService {
 			Admin was_found = list.get(0);
 			//进行Id检查是否一致,若一致，则进行修改
 			if(admin.getId() == was_found.getId()){
+				//更新Admin
 				was_found.setIntroduction(admin.getIntroduction());
 				was_found.setFlag(admin.getFlag());
 				was_found.setName(admin.getName());
 				was_found.setPassword(admin.getPassword());
 				adminDAOImpl.update(was_found);
+				
+				//添加Log记录
+				SuperLog superLog = new SuperLog();
+				superLog.setSuperAdmin(operator);
+				superLog.setLog(AdminLogMessage.updateAdmin_SUCCESS + admin.getUsername());
+				superLogDAOImpl.save(superLog);
 				return null;
 			}else{
 				return AdminReturn.IdConfict;

@@ -4,7 +4,7 @@
           "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.entity.SuperAdmin" table="t_admin">
+	<class name="com.entity.SuperAdmin" table="t_superadmin">
 		<id name="id" >
 			<column name="id"></column>
 			<generator class="native"></generator>

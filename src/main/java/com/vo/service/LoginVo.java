@@ -1,15 +1,17 @@
-package com.vo;
+package com.vo.service;
+
+import com.entity.Admin;
 
 public class LoginVo {
-	private boolean flag;
+	private Admin admin;
 	private String errorWords;
 
-	public boolean isFlag() {
-		return flag;
+	public Admin getAdmin() {
+		return admin;
 	}
 
-	public void setFlag(boolean flag) {
-		this.flag = flag;
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
 	}
 
 	public String getErrorWords() {

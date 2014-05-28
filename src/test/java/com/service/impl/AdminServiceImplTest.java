@@ -13,7 +13,7 @@ import com.entity.Admin;
 import com.entity.SuperAdmin;
 import com.service.AdminService;
 import com.util.admin.AdminReturn;
-import com.vo.LoginVo;
+import com.vo.service.LoginVo;
 import com.vo.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,8 +28,7 @@ public class AdminServiceImplTest {
 		user.setUsername("admin");
 		user.setPassword("124");
 		LoginVo loginVo = adminServiceImpl.login(user);
-		assertEquals(loginVo.isFlag(), false);
-
+		assertEquals(loginVo.getErrorWords(),AdminReturn.loginError);
 	}
 	
 	@Test

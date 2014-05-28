@@ -2,7 +2,7 @@ package com.service;
 
 import com.entity.Admin;
 import com.entity.SuperAdmin;
-import com.vo.LoginVo;
+import com.vo.service.LoginVo;
 import com.vo.User;
 
 public interface AdminService {
