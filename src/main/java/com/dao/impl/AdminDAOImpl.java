@@ -40,5 +40,11 @@ public class AdminDAOImpl implements AdminDAO{
 	public void update(Admin admin){
 		hibernateTemplate.update(admin);
 	}
+
+	@Override
+	public List<Admin> findAllByPaking(int num) {
+		
+		return null;
+	}
 	
 }

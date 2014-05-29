@@ -63,7 +63,7 @@ public class AdminServiceImpl implements AdminService {
 			
 			//添加Log
 			superLog.setSuperAdmin(operator);
-			superLog.setLog(AdminLogMessage.saveAdmin_SUCCESS + admin.getUsername());
+			superLog.setLog(AdminLogMessage.save_Admin_SUCCESS + admin.getUsername());
 			superLogDAOImpl.save(superLog);
 		} else {
 			return AdminReturn.hasUserNameReturn;
@@ -86,7 +86,7 @@ public class AdminServiceImpl implements AdminService {
 			
 			//添加Log
 			superLog.setSuperAdmin(Operator);
-			superLog.setLog(AdminLogMessage.deleteAmin_SUCCESS + admin.getUsername());
+			superLog.setLog(AdminLogMessage.delete_Admin_SUCCESS + admin.getUsername());
 			superLogDAOImpl.save(superLog);
 			return null;
 		}
@@ -109,9 +109,8 @@ public class AdminServiceImpl implements AdminService {
 				adminDAOImpl.update(was_found);
 				
 				//添加Log记录
-				SuperLog superLog = new SuperLog();
 				superLog.setSuperAdmin(operator);
-				superLog.setLog(AdminLogMessage.updateAdmin_SUCCESS + admin.getUsername());
+				superLog.setLog(AdminLogMessage.update_Admin_SUCCESS + admin.getUsername());
 				superLogDAOImpl.save(superLog);
 				return null;
 			}else{
