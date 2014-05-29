@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.dao.AdminDAO;
 import com.entity.Admin;
 
+@SuppressWarnings("unchecked")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 @Transactional
@@ -59,6 +60,7 @@ public class AdminDAOImplTest {
 		assertEquals(list.get(0).getId(),1);
 	}
 	
+	@SuppressWarnings("unused")
 	@Test 
 	public void update(){
 		//Admin创建
@@ -73,4 +75,9 @@ public class AdminDAOImplTest {
 		adminDAOImpl.update(admin);
 		List<Admin> list = adminDAOImpl.loadByUsername("admin");
 	}
+	@Test
+	public void finAllByPaking(){
+		
+	}
+	
 }

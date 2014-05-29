@@ -20,6 +20,7 @@ import com.util.admin.AdminReturn;
 import com.vo.service.LoginVo;
 import com.vo.User;
 
+@SuppressWarnings("unchecked")
 @Component("adminServiceImpl")
 @Transactional
 public class AdminServiceImpl implements AdminService {
