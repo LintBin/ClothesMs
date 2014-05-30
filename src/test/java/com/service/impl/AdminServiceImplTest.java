@@ -2,6 +2,8 @@ package com.service.impl;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -44,7 +46,7 @@ public class AdminServiceImplTest {
 		operator.setId(1);
 		
 		String returnStr = adminServiceImpl.add(admin,operator);
-		
+		assertEquals(returnStr,null);
 	}
 	@Test
 	public void delete(){
@@ -71,5 +73,11 @@ public class AdminServiceImplTest {
 		
 		String str = adminServiceImpl.update(admin, operator);
 		System.out.println(str);
+	}
+	
+	@Test
+	public void findAllByPaging(){
+		List<Admin> list = adminServiceImpl.findAllByPaging(0, 10);
+		assertEquals(list.size(),10);
 	}
 }

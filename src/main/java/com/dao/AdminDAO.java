@@ -11,7 +11,7 @@ public interface AdminDAO {
 	public abstract void updateFlag(Admin admin);
 	public abstract void update(Admin admin);
 	public abstract List loadByUsername(String name);
-	public abstract List findAllByPaking(int firstIndex,int size);
+	public abstract List findAllByPaging(int firstIndex,int size);
 }
 
  

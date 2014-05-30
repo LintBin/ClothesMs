@@ -123,4 +123,10 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
+	@Override
+	public List<Admin> findAllByPaging(int firstIndex, int size) {
+		List<Admin> result = adminDAOImpl.findAllByPaging(firstIndex, size);
+		return result;
+	}
+
 }

@@ -48,7 +48,7 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 
 	@Override
-	public List<Admin> findAllByPaking(final int firstIndex ,final int size) {
+	public List<Admin> findAllByPaging(final int firstIndex ,final int size) {
 		List<Admin> list = hibernateTemplate.execute(new HibernateCallback(){
 			@Override
 			public Object doInHibernate(Session session)

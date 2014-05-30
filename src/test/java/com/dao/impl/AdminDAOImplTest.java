@@ -75,9 +75,11 @@ public class AdminDAOImplTest {
 		adminDAOImpl.update(admin);
 		List<Admin> list = adminDAOImpl.loadByUsername("admin");
 	}
+	
 	@Test
-	public void finAllByPaking(){
-		
+	public void finAllByPaging(){
+		List<Admin> list = adminDAOImpl.findAllByPaging(0,10);
+		assertEquals(list.size(),10);
 	}
 	
 }
