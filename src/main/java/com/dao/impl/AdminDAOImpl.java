@@ -22,8 +22,8 @@ public class AdminDAOImpl implements AdminDAO{
 	@Resource
 	private HibernateTemplate hibernateTemplate;
 	public List<Admin> loadByUsernameAndPassword(String username,String password){
-		List<Admin> list = (List<Admin>) hibernateTemplate.find("from Admin as a where a.username=? and a.password =?",username,password);
-		return list;
+		List<Admin> result = (List<Admin>) hibernateTemplate.find("from Admin as a where a.username=? and a.password =?",username,password);
+		return result;
 	}
 
 	@Override
@@ -38,8 +38,8 @@ public class AdminDAOImpl implements AdminDAO{
 
 	@Override
 	public List<Admin> loadByUsername(String username) {
-		List<Admin> list = (List<Admin>) hibernateTemplate.find("from Admin as a where a.username = ?", username );
-		return list;
+		List<Admin> result = (List<Admin>) hibernateTemplate.find("from Admin as a where a.username = ?", username );
+		return result;
 	}
 	
 	@Override
@@ -49,16 +49,16 @@ public class AdminDAOImpl implements AdminDAO{
 
 	@Override
 	public List<Admin> findAllByPaging(final int firstIndex ,final int size) {
-		List<Admin> list = hibernateTemplate.execute(new HibernateCallback(){
+		List<Admin> result = hibernateTemplate.execute(new HibernateCallback(){
 			@Override
 			public Object doInHibernate(Session session)
 					throws HibernateException {
 				String hql = "from Admin as a";
-				List<?> list = PageNoUtil.getList(session, hql, firstIndex, size);
-				return list;
+				List<?> result = PageNoUtil.getList(session, hql, firstIndex, size);
+				return result;
 			}
 		});
-		return list;
+		return result;
 	}
 	
 }

@@ -25,6 +25,7 @@ public class WareHouseServiceImpl implements WareHouseService{
 	private WareHouseDAO wareHouseDAOImpl;
 	@Resource
 	private LogDAO logDAOImpl;
+	
 	private Log log = new Log();
 	@Override
 	public String save(Admin operator, WareHouse wareHouse) {
@@ -32,6 +33,12 @@ public class WareHouseServiceImpl implements WareHouseService{
 		List<WareHouse> list = wareHouseDAOImpl.findByDocu_number(wareHouse.getDocu_number());
 		if(list.size() == 0){
 			wareHouseDAOImpl.save(wareHouse);
+			
+			 //添加Log记录
+			 log.setAdmin(operator);
+			 log.setLog(WareHouseLogMessage.save_WareHouse_SUCCESS);
+			 logDAOImpl.save(log);
+			
 			return null;
 		}else{
 			return WareHouseReturn.hasThisWareHouse;
@@ -41,16 +48,22 @@ public class WareHouseServiceImpl implements WareHouseService{
 	@Override
 	public String delete(Admin operator, String wareHouse_number) {
 		//检查仓库是否已经存在
-		List<WareHouse> list = wareHouseDAOImpl.findByDocu_number(wareHouse_number);
+		List<WareHouse> result = wareHouseDAOImpl.findByDocu_number(wareHouse_number);
 		
-		if(list.size()==1){
-			 wareHouseDAOImpl.updateFlag(list.get(0));
-			 
-			 //添加Log类
-			 log.setAdmin(operator);
-			 log.setLog(WareHouseLogMessage.delete_WareHouse_SUCCESS);
-			 logDAOImpl.save(log);
-			 return null;
+		if(result.size() == 1){
+			 WareHouse deleted = result.get(0);
+			 if(deleted.getFlag() ==1){
+				 wareHouseDAOImpl.updateFlag(result.get(0));
+				 
+				 //添加Log记录
+				 log.setAdmin(operator);
+				 log.setLog(WareHouseLogMessage.delete_WareHouse_SUCCESS);
+				 logDAOImpl.save(log);
+				 return null;
+			 }else{
+				 return WareHouseReturn.has_been_deleted;
+			 }
+			
 		}else{
 			return WareHouseReturn.no_this_WareHouse;
 		}
@@ -60,12 +73,25 @@ public class WareHouseServiceImpl implements WareHouseService{
 	@Override
 	public String update(Admin operator, WareHouse wareHouse) {
 		//检查仓库是否已经存在
-		List<WareHouse> list = wareHouseDAOImpl.findByDocu_number(wareHouse.getDocu_number());
-		
-		if(list.size() == 1){
+		List<WareHouse> result = wareHouseDAOImpl.findByDocu_number(wareHouse.getDocu_number());
+		WareHouse was_found = result.get(0);
+		if(result.size() == 1){
 			//检查Id是否会冲突
-			if(list.get(0).getId() == wareHouse.getId()){
-				wareHouseDAOImpl.update(wareHouse);
+			if(result.get(0).getId() == wareHouse.getId()){
+				
+				was_found.setContact(wareHouse.getContact());
+				was_found.setContact_phone(wareHouse.getContact_phone());
+				was_found.setFlag(wareHouse.getFlag());
+				was_found.setName(wareHouse.getName());
+				was_found.setTotal_storage(wareHouse.getTotal_storage());
+				
+				wareHouseDAOImpl.update(was_found);
+				
+				 //添加Log记录
+				log.setAdmin(operator);
+				log.setLog(WareHouseLogMessage.update_WareHouse_SUCCESS);
+				logDAOImpl.save(log);
+				
 				return null;
 			}else{
 				return WareHouseReturn.id_confict;
@@ -78,12 +104,18 @@ public class WareHouseServiceImpl implements WareHouseService{
 
 	@Override
 	public WareHouse findWareHouseByDocuNum(String docuNum) {
-		List<WareHouse> list = wareHouseDAOImpl.findByDocu_number(docuNum);
+		List<WareHouse> result = wareHouseDAOImpl.findByDocu_number(docuNum);
 		
-		if(list.size()==1){
-			return list.get(0);
+		if(result.size()==1){
+			return result.get(0);
 		}else{
 			return null;
 		}
+	}
+
+	@Override
+	public List<WareHouse> findAllByPaging(int firstIndex,int size) {
+		List<WareHouse> result = wareHouseDAOImpl.findAllByPaging(firstIndex, size);
+		return result;
 	}
 }

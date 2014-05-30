@@ -35,13 +35,13 @@ public class WareHouseDAOImplTest {
 	@Test
 	public void findByDocu_number(){
 		String docu_number = "10000";
-		List list  = null;
+		List result  = null;
 		try{
-			list = wareHouseDAOImpl.findByDocu_number(docu_number);
+			result = wareHouseDAOImpl.findByDocu_number(docu_number);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		assertEquals(list.size(),1);
+		assertEquals(result.size(),1);
 	}
 	
 	@Test
@@ -55,8 +55,8 @@ public class WareHouseDAOImplTest {
 		wareHouse.setName("高邮仓库");
 		wareHouse.setTotal_storage(800);
 		wareHouseDAOImpl.updateFlag(wareHouse);
-		List<WareHouse> list = wareHouseDAOImpl.findByDocu_number(wareHouse.getDocu_number());
-		assertEquals(list.get(0).getFlag(), 0);
+		List<WareHouse> result = wareHouseDAOImpl.findByDocu_number(wareHouse.getDocu_number());
+		assertEquals(result.get(0).getFlag(), 0);
 	}
 	
 	@Test
@@ -70,8 +70,13 @@ public class WareHouseDAOImplTest {
 		wareHouse.setName("高邮仓库");
 		wareHouse.setTotal_storage(800);
 		wareHouseDAOImpl.update(wareHouse);
-		List<WareHouse> list = wareHouseDAOImpl.findByDocu_number(wareHouse.getDocu_number());
-		assertEquals(list.get(0).getContact(),"李四");
+		List<WareHouse> result = wareHouseDAOImpl.findByDocu_number(wareHouse.getDocu_number());
+		assertEquals(result.get(0).getContact(),"李四");
 	}
 	
+	@Test
+	public void findAllByPaging(){
+		List<WareHouse> result = wareHouseDAOImpl.findAllByPaging(0, 10);
+		assertEquals(result.size(), 10);
+	}
 }
