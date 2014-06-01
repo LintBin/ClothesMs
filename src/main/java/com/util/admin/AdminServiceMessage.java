@@ -2,7 +2,7 @@ package com.util.admin;
 
 import org.springframework.stereotype.Component;
 
-public class AdminReturn {
+public class AdminServiceMessage {
 	public static String hasUserNameReturn = "此账号已被注册，请更换账号注册";
 	public static String has_been_deleted = "此账号已被删除，若有疑问，请联系账号管理员";
 	public static String loginError = "该用户不存在或者密码错误";

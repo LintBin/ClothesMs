@@ -60,5 +60,11 @@ public class AdminDAOImpl implements AdminDAO{
 		});
 		return result;
 	}
+
+	@Override
+	public Admin getAdminById(int id) {
+		Admin result = hibernateTemplate.get(Admin.class, id);
+		return result;
+	}
 	
 }

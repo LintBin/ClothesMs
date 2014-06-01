@@ -1,6 +1,8 @@
 package com.dao.impl;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
@@ -25,7 +27,6 @@ public class SuperAdminDAOImplTest {
 		String username = "lin";
 		String password = "lin";
 		List<SuperAdmin> list = superAdminDAOImpl.findByUsernameAndPassword(username, password);
-		assertEquals(list.size(),1);
-		
+		assertThat(list.size(),is(1));
 	}
 }

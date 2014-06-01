@@ -5,8 +5,10 @@ import com.entity.Admin;
 import com.entity.Log;
 
 public class LogSaveUtil {
-	public static void save(String message,Admin Operator,Object operated,LogDAO logDAOImpl){
+	public static void save(String message,Admin operator,Object operated,LogDAO logDAOImpl){
 		Log log = new Log();
+		log.setAdmin(operator);
+		log.setLog(message);
 		logDAOImpl.save(log);
 	}
 }

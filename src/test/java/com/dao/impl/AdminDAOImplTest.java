@@ -1,6 +1,8 @@
 package com.dao.impl;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
@@ -25,8 +27,8 @@ public class AdminDAOImplTest {
 
 	@Test
 	public void loadByUsernameAndPassword(){
-		List<Admin> list = adminDAOImpl.loadByUsernameAndPassword("admin","123");
-		assertEquals(list.get(0).getName(),"lin");
+		List<Admin> list = adminDAOImpl.loadByUsernameAndPassword("username1","password1");
+		assertThat(list.get(0).getName(),equalTo("name1"));
 	}
 	
 	@Test
@@ -43,21 +45,22 @@ public class AdminDAOImplTest {
 	public void updateFlag(){
 		
 		Admin admin = new Admin();
-		admin.setUsername("hong");
-		admin.setId(2);
+		admin.setUsername("username1");
+		admin.setId(1);
 		admin.setIntroduction("updateFlag");
 		admin.setName("lll");
 		admin.setPassword("binllll");
-
+		admin.setFlag(0);
+		
 		adminDAOImpl.updateFlag(admin);
-		List<Admin> list = adminDAOImpl.loadByUsername("hong");
-		assertEquals(list.get(0).getFlag(),0);
+		List<Admin> list = adminDAOImpl.loadByUsername("username1");
+		assertThat(list.get(0).getFlag(),is(0));
 	}
 	
 	@Test
 	public void findByUsername(){
-		List<Admin> list = adminDAOImpl.loadByUsername("admin");
-		assertEquals(list.get(0).getId(),1);
+		List<Admin> list = adminDAOImpl.loadByUsername("username1");
+		assertThat(list.get(0).getId(),is(1));
 	}
 	
 	@SuppressWarnings("unused")
@@ -79,7 +82,13 @@ public class AdminDAOImplTest {
 	@Test
 	public void finAllByPaging(){
 		List<Admin> list = adminDAOImpl.findAllByPaging(0,10);
-		assertEquals(list.size(),10);
+		assertThat(list.size(),is(10));
 	}
 	
+	@Test
+	public void getAdminById(){
+		Admin admin = adminDAOImpl.getAdminById(1);
+		assertThat(admin,notNullValue());
+		assertThat(admin.getName(),equalTo("name1"));
+	}
 }

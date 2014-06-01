@@ -23,7 +23,7 @@ public class ClothesDAOImpl implements ClothesDAO {
 	@Resource
 	private HibernateTemplate hibernateTemplate;
 	
-	
+	//通过编号查找
 	@Override
 	public List<Clothes> findClothesByDocuNum(String docuNum) {
 		List<Clothes> result = (List<Clothes>) hibernateTemplate.find("from Clothes as c where c.docuNum = ?",docuNum);
@@ -39,12 +39,14 @@ public class ClothesDAOImpl implements ClothesDAO {
 	public void update(Clothes clothes) {
 		hibernateTemplate.update(clothes);
 	}
-
+	
+	//删除
 	@Override
 	public void updateFlag(Clothes clothes){
 		hibernateTemplate.update(clothes);
 	}
-
+	
+	//分页查找
 	@Override
 	public List<Clothes> findAllByPaging(final int firstIndex,final int size) {
 		List<Clothes> result = hibernateTemplate.execute(new HibernateCallback(){

@@ -5,6 +5,10 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

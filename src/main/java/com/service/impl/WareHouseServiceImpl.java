@@ -14,7 +14,7 @@ import com.entity.Log;
 import com.entity.WareHouse;
 import com.service.WareHouseService;
 import com.util.wareHouse.WareHouseLogMessage;
-import com.util.wareHouse.WareHouseReturn;
+import com.util.wareHouse.WareHouseServiceMessage;
 
 
 @SuppressWarnings("unchecked")
@@ -41,7 +41,7 @@ public class WareHouseServiceImpl implements WareHouseService{
 			
 			return null;
 		}else{
-			return WareHouseReturn.hasThisWareHouse;
+			return WareHouseServiceMessage.hasThisWareHouse;
 		}
 	}
 
@@ -61,11 +61,11 @@ public class WareHouseServiceImpl implements WareHouseService{
 				 logDAOImpl.save(log);
 				 return null;
 			 }else{
-				 return WareHouseReturn.has_been_deleted;
+				 return WareHouseServiceMessage.has_been_deleted;
 			 }
 			
 		}else{
-			return WareHouseReturn.no_this_WareHouse;
+			return WareHouseServiceMessage.no_this_WareHouse;
 		}
 		
 	}
@@ -94,10 +94,10 @@ public class WareHouseServiceImpl implements WareHouseService{
 				
 				return null;
 			}else{
-				return WareHouseReturn.id_confict;
+				return WareHouseServiceMessage.id_confict;
 			}
 		}else{
-			return WareHouseReturn.no_this_WareHouse;
+			return WareHouseServiceMessage.no_this_WareHouse;
 		}
 	}
 

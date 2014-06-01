@@ -4,7 +4,9 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +43,8 @@ public class WareHouseDAOImplTest {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		assertEquals(result.size(),1);
+	//	assertEquals(result.size(),1);
+		assertThat(result.size(),is(1));
 	}
 	
 	@Test
@@ -56,7 +59,7 @@ public class WareHouseDAOImplTest {
 		wareHouse.setTotal_storage(800);
 		wareHouseDAOImpl.updateFlag(wareHouse);
 		List<WareHouse> result = wareHouseDAOImpl.findByDocu_number(wareHouse.getDocu_number());
-		assertEquals(result.get(0).getFlag(), 0);
+		assertThat(result.get(0).getFlag(), is(0));
 	}
 	
 	@Test
@@ -71,12 +74,12 @@ public class WareHouseDAOImplTest {
 		wareHouse.setTotal_storage(800);
 		wareHouseDAOImpl.update(wareHouse);
 		List<WareHouse> result = wareHouseDAOImpl.findByDocu_number(wareHouse.getDocu_number());
-		assertEquals(result.get(0).getContact(),"李四");
+		assertThat(result.get(0).getContact(),equalTo("李四"));
 	}
 	
 	@Test
 	public void findAllByPaging(){
 		List<WareHouse> result = wareHouseDAOImpl.findAllByPaging(0, 10);
-		assertEquals(result.size(), 10);
+		assertThat(result.size(), is(10));
 	}
 }

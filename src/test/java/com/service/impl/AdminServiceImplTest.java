@@ -1,6 +1,8 @@
 package com.service.impl;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
@@ -14,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.entity.Admin;
 import com.entity.SuperAdmin;
 import com.service.AdminService;
-import com.util.admin.AdminReturn;
+import com.util.admin.AdminServiceMessage;
 import com.vo.service.LoginVo;
 import com.vo.User;
 
@@ -30,7 +32,7 @@ public class AdminServiceImplTest {
 		user.setUsername("admin");
 		user.setPassword("124");
 		LoginVo loginVo = adminServiceImpl.login(user);
-		assertEquals(loginVo.getErrorWords(),AdminReturn.loginError);
+		assertThat(loginVo.getErrorWords(),equalTo(AdminServiceMessage.loginError));
 	}
 	
 	@Test
@@ -38,15 +40,15 @@ public class AdminServiceImplTest {
 		Admin admin = new Admin();
 		admin.setFlag(1);
 		admin.setIntroduction("haha");
-		admin.setName("bin");
+		admin.setName("xiaolin");
 		admin.setPassword("312132321313");
-		admin.setUsername("hong");
+		admin.setUsername("xiaolin");
 		
 		SuperAdmin operator = new SuperAdmin();
 		operator.setId(1);
 		
 		String returnStr = adminServiceImpl.add(admin,operator);
-		assertEquals(returnStr,null);
+		assertThat(returnStr,nullValue());
 	}
 	@Test
 	public void delete(){
@@ -54,7 +56,7 @@ public class AdminServiceImplTest {
 		operator.setId(1);
 		
 		String returnStr = adminServiceImpl.delete("hong",operator);
-		assertEquals(returnStr,null);
+		assertThat(returnStr,null);
 	//	assertEquals(returnStr,AdminReturn.noThisUsername);
 	}
 	
@@ -78,6 +80,6 @@ public class AdminServiceImplTest {
 	@Test
 	public void findAllByPaging(){
 		List<Admin> list = adminServiceImpl.findAllByPaging(0, 10);
-		assertEquals(list.size(),10);
+		assertThat(list.size(),is(10));
 	}
 }

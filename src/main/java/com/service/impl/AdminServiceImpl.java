@@ -16,7 +16,7 @@ import com.entity.SuperAdmin;
 import com.entity.SuperLog;
 import com.service.AdminService;
 import com.util.admin.AdminLogMessage;
-import com.util.admin.AdminReturn;
+import com.util.admin.AdminServiceMessage;
 import com.vo.service.LoginVo;
 import com.vo.User;
 
@@ -44,11 +44,11 @@ public class AdminServiceImpl implements AdminService {
 			if(list.get(0).getFlag() == 1){
 				loginVo.setAdmin(list.get(0));
 			}else{
-				loginVo.setErrorWords(AdminReturn.has_been_deleted);
+				loginVo.setErrorWords(AdminServiceMessage.has_been_deleted);
 			}
 		} else {
 			//list没有对象，不能登陆，返回错误信息的
-			loginVo.setErrorWords(AdminReturn.loginError);
+			loginVo.setErrorWords(AdminServiceMessage.loginError);
 		}
 		return loginVo;
 	}
@@ -67,7 +67,7 @@ public class AdminServiceImpl implements AdminService {
 			superLog.setLog(AdminLogMessage.save_Admin_SUCCESS + admin.getUsername());
 			superLogDAOImpl.save(superLog);
 		} else {
-			return AdminReturn.hasUserNameReturn;
+			return AdminServiceMessage.hasUserNameReturn;
 		}
 		return null;
 	}
@@ -78,7 +78,7 @@ public class AdminServiceImpl implements AdminService {
 		//检测是否存在这个Admin
 		List<Admin> list = adminDAOImpl.loadByUsername(username);
 		if (list.size() < 1) {
-			return AdminReturn.noThisUsername;
+			return AdminServiceMessage.noThisUsername;
 		}else {
 			//删除dmin
 			Admin admin = list.get(0);
@@ -115,10 +115,10 @@ public class AdminServiceImpl implements AdminService {
 				superLogDAOImpl.save(superLog);
 				return null;
 			}else{
-				return AdminReturn.IdConfict;
+				return AdminServiceMessage.IdConfict;
 			}
 		}else {
-			return AdminReturn.noThisUsername;
+			return AdminServiceMessage.noThisUsername;
 		}
 		
 	}
