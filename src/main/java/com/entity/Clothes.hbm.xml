@@ -31,7 +31,7 @@
 			<column name="ex_factory_price" not-null="true"></column>
 		</property>
 
-		<many-to-one name="operator" column="operator" cascade = "none"  class="com.entity.Admin" not-null="true" >
+		<many-to-one name="operator" column="operator" cascade ="none"  class="com.entity.Admin" not-null="true" >
 		</many-to-one>
 		
 		<property name="retail_price">

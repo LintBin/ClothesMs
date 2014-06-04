@@ -68,4 +68,9 @@ public class ClothesDAOImplTest {
 		clothesDAOImpl.update(clothes);
 		List<Clothes> result = clothesDAOImpl.findClothesByDocuNum("BR1703");
 	}
+	
+	@Test
+	public void findClothesByDocuNum(){
+		List<Clothes> result = clothesDAOImpl.findClothesByDocuNum("docu1");
+	}
 }

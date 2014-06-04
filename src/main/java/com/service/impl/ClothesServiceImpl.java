@@ -3,6 +3,7 @@ package com.service.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,7 @@ import com.util.clothes.ClothesServiceMessage;
 
 @SuppressWarnings("unchecked")
 @Component
+@Transactional
 public class ClothesServiceImpl implements ClothesService {
 	@Resource
 	private ClothesDAO clothesDAOImpl;
@@ -32,7 +34,13 @@ public class ClothesServiceImpl implements ClothesService {
 	@Override
 	public String save(Clothes clothes, Admin operator) {
 		//检查是否有这个货号
-		List<Clothes> result = (List<Clothes>) clothesDAOImpl.findClothesByDocuNum(clothes.getDocuNum());
+		List<Clothes> result = null ;
+		try{
+			result = (List<Clothes>) clothesDAOImpl.findClothesByDocuNum(clothes.getDocuNum());
+		}catch(Exception e){
+			System.out.println("<----------->");
+			e.printStackTrace();
+		}
 		if(result.size()== 0){
 			//货号中的管理员是否有这个权限
 			Admin adminResult = adminDAOImpl.getAdminById(operator.getId());

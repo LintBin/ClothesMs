@@ -1,13 +1,11 @@
 package com.dao.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
-
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,4 +32,10 @@ public class LogDAOImplTest {
 
 		logDAOImpl.save(log);
 	}
+	
+	@Test
+	public void findAll(){
+		List<Log> result = logDAOImpl.findAll();
+	}
+	
 }

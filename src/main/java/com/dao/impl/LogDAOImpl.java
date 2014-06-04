@@ -1,5 +1,7 @@
 package com.dao.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
@@ -21,6 +23,12 @@ public class LogDAOImpl implements LogDAO {
 	
 	@Override
 	public void save(Log log) {
-			hibernateTemplate.save(log);
+		hibernateTemplate.save(log);
+	}
+
+	@Override
+	public List<Log> findAll() {
+		List<Log> result = (List<Log>) hibernateTemplate.find("from Log ");
+		return result;
 	}
 }

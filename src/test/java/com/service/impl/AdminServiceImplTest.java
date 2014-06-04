@@ -29,8 +29,8 @@ public class AdminServiceImplTest {
 	@Test
 	public void login() {
 		User user = new User();
-		user.setUsername("admin");
-		user.setPassword("124");
+		user.setUsername("username1");
+		user.setPassword("password1");
 		LoginVo loginVo = adminServiceImpl.login(user);
 		assertThat(loginVo.getErrorWords(),equalTo(AdminServiceMessage.loginError));
 	}
