@@ -21,8 +21,7 @@ import com.service.ClothesService;
 public class ClothesServiceImplTest {
 	@Resource
 	private ClothesService clothesServiceImpl;
-	/*private Admin admin ;
-	private Clothes clothes;*/
+	
 	
 	
 	@Test
@@ -53,13 +52,35 @@ public class ClothesServiceImplTest {
 	
 	@Test
 	public void update(){
-		/*clothes.setColor("黑色");
-		clothes.setOut_material("丝绸");
-		try{
-			String result = clothesServiceImpl.update(clothes,admin);
-		}catch(Exception e){
-			e.printStackTrace();
-		}*/
+		Clothes clothes = new Clothes();
+		clothes.setId(1);
+		clothes.setCommodity_name("中款大衣");
+		clothes.setDocuNum("docu1");
+		clothes.setEx_factory_price(100000);
+		clothes.setFlag(100);
+		clothes.setIn_material("塑料");
+		clothes.setOut_material("棉布");
+		clothes.setRetail_price(800);
+		clothes.setSize(150);
+		clothes.setColor("深蓝色");
+		
+		Admin admin = new Admin();
+		admin.setId(1);
+		admin.setUsername("username1");
+		admin.setIntroduction("password1");
+		admin.setName("name1");
+		admin.setPassword("password1");
+		admin.setFlag(1);
+		
+		
+		
+		
+		clothes.setOperator(admin);
+		
+		clothesServiceImpl.update(clothes, admin);
+		
+		
+		
 	}
 	
 	@Test

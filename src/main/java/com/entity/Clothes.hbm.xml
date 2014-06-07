@@ -20,7 +20,7 @@
 		</property>
 
 		<property name="size">
-			<column name="size" not-null="true"></column>
+			<column name="size"  not-null="true"></column>
 		</property>
 
 		<property name="commodity_name">
@@ -31,15 +31,18 @@
 			<column name="ex_factory_price" not-null="true"></column>
 		</property>
 
-		<many-to-one name="operator" column="operator" cascade ="none"  class="com.entity.Admin" not-null="true" >
-		</many-to-one>
-		
+		<many-to-one name="operator" class="com.entity.Admin" lazy="false" fetch="select">
+            <column name="operator" not-null="true" />
+        </many-to-one>
+        
 		<property name="retail_price">
 			<column name="retail_price" not-null="true"></column>
 		</property>
+		
 		<property name="out_material">
 			<column name="out_material" not-null="true"></column>
 		</property>
+		
 		<property name="in_material">
 			<column name="in_material" not-null="true"></column>
 		</property>

@@ -62,6 +62,7 @@ public class ClothesServiceImpl implements ClothesService {
 	public String update(Clothes clothes, Admin operator) {
 		List<Clothes> result = (List<Clothes>) clothesDAOImpl.findClothesByDocuNum(clothes.getDocuNum()); 
 		if(result.size()==1){
+			
 			clothesDAOImpl.update(clothes);
 			
 			//添加日志记录
