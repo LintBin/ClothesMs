@@ -71,7 +71,7 @@ public class AdminServiceImplTest {
 		admin.setIntroduction("update");
 		admin.setName("bin");
 		admin.setPassword("000");
-		admin.setUsername("hong");
+		admin.setUsername("username2");
 		
 		String str = adminServiceImpl.update(admin, operator);
 		System.out.println(str);

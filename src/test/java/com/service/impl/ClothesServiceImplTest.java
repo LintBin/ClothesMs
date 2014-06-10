@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,14 +22,14 @@ import com.service.ClothesService;
 public class ClothesServiceImplTest {
 	@Resource
 	private ClothesService clothesServiceImpl;
-	/*private Admin admin ;
-	private Clothes clothes;*/
+	private Admin admin ;
+	private Clothes clothes;
 	
 	
-	@Test
-	public void save(){
-		Admin admin = new Admin();
-		Clothes clothes = new Clothes();
+	@Before
+	public void before(){
+		admin = new Admin();
+		clothes = new Clothes();
 		admin.setFlag(1);
 		admin.setId(1);
 		admin.setIntroduction("introduce1");
@@ -46,25 +47,38 @@ public class ClothesServiceImplTest {
 		clothes.setOut_material("布");
 		clothes.setRetail_price(1000);
 		clothes.setSize(200);
-		
+	}
+	
+	@Test
+	public void findByDocuNum(){
+		Clothes result = clothesServiceImpl.findClothesByDocuNum("docu10");
+		assertThat(result,notNullValue());
+	}
+	
+	
+	@Test
+	public void save(){
 		String result = clothesServiceImpl.save(clothes,admin);
 		assertThat(result,nullValue());
 	}
 	
 	@Test
 	public void update(){
-		/*clothes.setColor("黑色");
+		clothes.setColor("黑色");
 		clothes.setOut_material("丝绸");
-		try{
-			String result = clothesServiceImpl.update(clothes,admin);
-		}catch(Exception e){
-			e.printStackTrace();
-		}*/
+		String result = clothesServiceImpl.update(clothes,admin);
 	}
 	
 	@Test
 	public void findAllByPaging(){
 		List<Clothes> result = clothesServiceImpl.findAllByPaging(0, 10);
 		assertThat(result.size(),is(10));
+	}
+	
+	@Test
+	public void delete(){
+		clothes.setFlag(0);
+		String resultStr = clothesServiceImpl.delete(clothes, admin);
+		System.out.println(resultStr);
 	}
 }
