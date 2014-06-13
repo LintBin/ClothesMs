@@ -24,7 +24,9 @@ import com.entity.Admin;
 public class AdminDAOImplTest {
 	@Resource(name = "adminDAOImpl")
 	private AdminDAO adminDAOImpl;
-
+	/**
+	 * 前置条件:数据库中的t_admin表中 select * from admin where username="username1" and password="password1"返回不是空
+	 */
 	@Test
 	public void loadByUsernameAndPassword(){
 		List<Admin> list = adminDAOImpl.loadByUsernameAndPassword("username1","password1");
