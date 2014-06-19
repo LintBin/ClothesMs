@@ -1,56 +1,3 @@
-<<<<<<< HEAD
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC
-      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
-<hibernate-mapping>
-	<class name="com.entity.Clothes" table="t_clothes">
-
-		<id name="id">
-			<column name="id"></column>
-			<generator class="native"></generator>
-		</id>
-
-		<property name="docuNum">
-			<column name="docu_number" not-null="true"></column>
-		</property>
-
-		<property name="color">
-			<column name="color" not-null="true"></column>
-		</property>
-
-		<property name="size">
-			<column name="size" not-null="true"></column>
-		</property>
-
-		<property name="commodity_name">
-			<column name="commodity_name" not-null="true"></column>
-		</property>
-
-		<property name="ex_factory_price">
-			<column name="ex_factory_price" not-null="true"></column>
-		</property>
-
-		<many-to-one name="operator" column="operator" cascade ="none"  class="com.entity.Admin" not-null="true" lazy="false">
-		</many-to-one>
-		
-		<property name="retail_price">
-			<column name="retail_price" not-null="true"></column>
-		</property>
-		<property name="out_material">
-			<column name="out_material" not-null="true"></column>
-		</property>
-		<property name="in_material">
-			<column name="in_material" not-null="true"></column>
-		</property>
-
-		<property name="flag">
-			<column name="flag" not-null="true"></column>
-		</property>
-	</class>
-
-=======
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC
       "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
@@ -105,5 +52,4 @@
 		</property>
 	</class>
 
->>>>>>> branch 'master' of https://github.com/LintBin/ClothesMs.git
 </hibernate-mapping>
