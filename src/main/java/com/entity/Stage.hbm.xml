@@ -11,7 +11,7 @@
 			<generator class="native"></generator>
 		</id>
 		
-		<property name="stageNum" >
+		<property name="stageNumber" >
 			<column name="stage_number" not-null="true"></column>
 		</property>
 

@@ -14,7 +14,7 @@ public class Stage {
 	private int id;
 	private WareHouse wareHouse;
 	private Clothes clothes;
-	private int stageNum;
+	private int stageNumber;
 
 	public int getId() {
 		return id;
@@ -40,12 +40,14 @@ public class Stage {
 		this.clothes = clothes;
 	}
 
-	public int getStageNum() {
-		return stageNum;
+	public int getStageNumber() {
+		return stageNumber;
 	}
 
-	public void setStageNum(int stageNum) {
-		this.stageNum = stageNum;
+	public void setStageNumber(int stageNumber) {
+		this.stageNumber = stageNumber;
 	}
+
+	
 
 }
