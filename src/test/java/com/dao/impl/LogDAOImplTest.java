@@ -23,19 +23,28 @@ public class LogDAOImplTest {
 
 	@Test
 	public void save() {
-
-		Log log = new Log();
 		Admin admin = new Admin();
 		admin.setId(1);
+		admin.setUsername("username50");
+		admin.setIntroduction("password50");
+		admin.setName("name50");
+		admin.setPassword("password50");
+		admin.setFlag(1);
+		
+		Log log = new Log();
 		log.setAdmin(admin);
 		log.setLog("保存信息");
 
 		logDAOImpl.save(log);
+		
+		List<Log> result = logDAOImpl.findAll();
+		System.out.println(result.size());
 	}
 	
 	@Test
 	public void findAll(){
 		List<Log> result = logDAOImpl.findAll();
+		
 	}
 	
 }

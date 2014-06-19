@@ -56,21 +56,66 @@ public class ClothesDAOImplTest {
 		Clothes clothes = new Clothes();
 		clothes.setId(1);
 		clothes.setCommodity_name("中款大衣");
-		clothes.setDocuNum("BR1001");
+		clothes.setDocuNum("docu1");
 		clothes.setEx_factory_price(450);
 		clothes.setFlag(100);
 		clothes.setIn_material("布");
 		clothes.setOut_material("尼龙");
 		clothes.setRetail_price(800);
 		clothes.setSize(150);
-		
 		clothes.setColor("深蓝色");
+		
+		Admin admin = new Admin();
+		admin.setId(1);
+		admin.setUsername("username1");
+		admin.setIntroduction("password1");
+		admin.setName("name1");
+		admin.setPassword("password1");
+		admin.setFlag(1);
+		
+		clothes.setOperator(admin);
 		clothesDAOImpl.update(clothes);
 		List<Clothes> result = clothesDAOImpl.findClothesByDocuNum("BR1703");
+		
 	}
 	
 	@Test
 	public void findClothesByDocuNum(){
 		List<Clothes> result = clothesDAOImpl.findClothesByDocuNum("docu1");
+		assertThat(result.size(),is(1));
+	}
+	
+	@Test
+	public void findClothesPaging(){
+		List<Clothes> result = clothesDAOImpl.findAllByPaging(0, 10);
+		System.out.println(result.size());
+	}
+	
+	@Test
+	public void updataFlag(){
+		Clothes clothes = new Clothes();
+		clothes.setId(1);
+		clothes.setCommodity_name("中款大衣");
+		clothes.setDocuNum("docu1");
+		clothes.setEx_factory_price(450);
+		clothes.setFlag(100);
+		clothes.setIn_material("布");
+		clothes.setOut_material("尼龙");
+		clothes.setRetail_price(800);
+		clothes.setSize(150);
+		clothes.setColor("深蓝色");
+		
+		Admin admin = new Admin();
+		admin.setId(1);
+		admin.setUsername("username1");
+		admin.setIntroduction("password1");
+		admin.setName("name1");
+		admin.setPassword("password1");
+		admin.setFlag(1);
+		
+		clothes.setOperator(admin);
+		clothesDAOImpl.updateFlag(clothes);
+		List<Clothes> result = clothesDAOImpl.findClothesByDocuNum("docu1");
+		assertThat(result.get(0).getFlag(),is(100));
 	}
 }
