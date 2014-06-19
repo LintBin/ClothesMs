@@ -39,6 +39,7 @@
 				<value>com/entity/Log.hbm.xml</value>
 				<value>com/entity/SuperLog.hbm.xml</value>
 				<value>com/entity/SuperAdmin.hbm.xml</value>
+				<value>com/entity/Storage.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

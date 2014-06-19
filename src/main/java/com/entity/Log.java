@@ -2,7 +2,11 @@ package com.entity;
 
 import java.util.Date;
 
-
+/**实体类
+ *@Author kklt21cn
+ *@Since 2014年6月19日
+ *@Version 1.0
+ */
 public class Log {
 	private int Id;
 	private String log;

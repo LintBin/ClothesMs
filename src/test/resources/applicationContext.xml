@@ -41,6 +41,7 @@
 				<value>com/entity/SuperAdmin.hbm.xml</value>
 				<value>com/entity/WareHouse.hbm.xml</value>
 				<value>com/entity/Clothes.hbm.xml</value>
+				<value>com/entity/Storage.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

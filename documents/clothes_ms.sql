@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySql
+Source Server         : localhost_3306
 Source Server Version : 50535
 Source Host           : localhost:3306
 Source Database       : clothes_ms
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-06-13 23:38:53
+Date: 2014-06-19 10:53:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -158,13 +158,15 @@ DROP TABLE IF EXISTS `t_orderout`;
 CREATE TABLE `t_orderout` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `d_number` char(15) NOT NULL,
-  `warehouse` int(11) NOT NULL,
+  `warehouseId` int(11) NOT NULL,
   `out_time` date NOT NULL,
   `manager` int(11) NOT NULL,
   `send` varchar(50) NOT NULL COMMENT '发往地',
   `flat` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `fk_T_orderOut_T_admin_1` (`manager`),
+  KEY `fk_T_orderOut_T_wareHouse_1` (`warehouseId`),
+  CONSTRAINT `fk_T_orderOut_T_wareHouse_1` FOREIGN KEY (`warehouseId`) REFERENCES `t_warehouse` (`Id`),
   CONSTRAINT `fk_T_orderOut_T_admin_1` FOREIGN KEY (`manager`) REFERENCES `t_admin` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -173,23 +175,23 @@ CREATE TABLE `t_orderout` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for t_stage
+-- Table structure for t_storage
 -- ----------------------------
-DROP TABLE IF EXISTS `t_stage`;
-CREATE TABLE `t_stage` (
+DROP TABLE IF EXISTS `t_storage`;
+CREATE TABLE `t_storage` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `clothes_id` int(11) NOT NULL,
-  `stage_number` int(11) NOT NULL,
   `warehouse_id` int(11) NOT NULL,
+  `clothes_id` int(11) NOT NULL,
+  `storage_number` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
-  UNIQUE KEY `clothes_id` (`clothes_id`,`warehouse_id`),
-  KEY `fk_T_stage_T_wareHouse_1` (`warehouse_id`),
-  CONSTRAINT `fk_T_stage_T_wareHouse_1` FOREIGN KEY (`warehouse_id`) REFERENCES `t_warehouse` (`Id`),
-  CONSTRAINT `fk_T_stage_T_clothes_1` FOREIGN KEY (`clothes_id`) REFERENCES `t_clothes` (`Id`)
+  UNIQUE KEY `warehouse_id` (`warehouse_id`,`clothes_id`),
+  KEY `fk_T_storage_T_clothes_1` (`clothes_id`),
+  CONSTRAINT `fk_T_storage_T_wareHouse_1` FOREIGN KEY (`warehouse_id`) REFERENCES `t_warehouse` (`Id`),
+  CONSTRAINT `fk_T_storage_T_clothes_1` FOREIGN KEY (`clothes_id`) REFERENCES `t_clothes` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of t_stage
+-- Records of t_storage
 -- ----------------------------
 
 -- ----------------------------

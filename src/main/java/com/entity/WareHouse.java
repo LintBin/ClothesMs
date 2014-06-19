@@ -1,5 +1,9 @@
 package com.entity;
-
+/**实体类
+ *@Author kklt21cn
+ *@Since 2014年6月19日
+ *@Version 1.0
+ */
 public class WareHouse {
 	public int id;
 	public String docu_number;
