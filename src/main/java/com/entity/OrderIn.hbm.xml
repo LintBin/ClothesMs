@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 
-	<class name="com.entity.Storage" table="t_storage">
+	<class name="com.entity.OrderIn" table="t_storage">
 		<id name="id" >
 			<column name="id"></column>
 			<generator class="native"></generator>
@@ -19,8 +19,15 @@
 			<column name="flag" not-null="true"></column>
 		</property>
 		
+		<property name="date">
+			<column name="in_date" not-null="true"></column>
+		</property>
 		
+		<property name="source">
+			<column name="source" not-null="true"></column>
+		</property>
+		
+		<many-to-one name="manager" column="manager" cascade="none"  class="com.entity.Admin" not-null="true" lazy="false"></many-to-one>
 		<many-to-one name="wareHouse" column="warehouse_id" cascade="none"  class="com.entity.WareHouse" not-null="true" lazy="false"></many-to-one>
-		<many-to-one name="clothes" column="clothes_id" cascade = "none"  class="com.entity.Clothes" not-null="true" lazy="false"></many-to-one> 
 	</class>
 </hibernate-mapping>

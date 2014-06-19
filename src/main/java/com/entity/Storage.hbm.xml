@@ -5,14 +5,14 @@
 
 <hibernate-mapping>
 
-	<class name="com.entity.OrderIn" table="t_orderIn">
+	<class name="com.entity.Storage" table="t_storage">
 		<id name="id" >
 			<column name="id"></column>
 			<generator class="native"></generator>
 		</id>
 		
-		<property name="docu_number" >
-			<column name="docu_number" not-null="true"></column>
+		<property name="storage_Number" >
+			<column name="storage_number" not-null="true"></column>
 		</property>
 		
 		<property name="flag">
