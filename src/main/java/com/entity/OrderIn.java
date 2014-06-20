@@ -6,7 +6,7 @@ package com.entity;
 import java.util.Date;
 
 /**实体类
- *@Author kklt21cn
+ *@Auth  kklt21cn
  *@Since 2014年6月19日
  *@Version 1.0
  */

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import com.dao.OrderInDAO;
 import com.entity.Admin;
+import com.entity.Clothes;
 import com.entity.OrderIn;
 import com.entity.Storage;
 import com.util.PageNoUtil;
@@ -25,36 +26,29 @@ import com.util.PageNoUtil;
  *@Version 1.0
  */
 @Component
+@SuppressWarnings("unchecked")
 public class OrderInDAOImpl implements OrderInDAO {
 	@Resource
 	private HibernateTemplate hibernateTemplate;
-	/* (non-Javadoc)
-	 * @see com.dao.OrderInDAO#add(com.entity.OrderIn)
-	 */
+	
 	@Override
 	public void add(OrderIn orderIn) {
 		hibernateTemplate.save(orderIn);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.dao.OrderInDAO#updateFlag(com.entity.OrderIn)
-	 */
+	
 	@Override
 	public void updateFlag(OrderIn orderIn) {
 		hibernateTemplate.update(orderIn);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.dao.OrderInDAO#update(com.entity.OrderIn)
-	 */
+	
 	@Override
 	public void update(OrderIn orderIn) {
 		hibernateTemplate.update(orderIn);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.dao.OrderInDAO#findById(int)
-	 */
+	
 	@Override
 	public OrderIn findById(int id) {
 		OrderIn orderIn = hibernateTemplate.get(OrderIn.class, id);

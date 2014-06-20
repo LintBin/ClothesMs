@@ -3,6 +3,11 @@
  */
 package com.dao.impl;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
@@ -16,14 +21,12 @@ import com.dao.OrderInDAO;
 import com.entity.Admin;
 import com.entity.OrderIn;
 import com.entity.WareHouse;
-
 /**
  *@Author kklt21cn
  *@Since 2014年6月19日
  *@Version 1.0
  */
 
-@SuppressWarnings("unchecked")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 @Transactional
@@ -65,6 +68,35 @@ public class OrderInDAOImplTest {
 	@Test
 	public void add(){
 		orderInDAOImpl.add(orderIn);
+	}
+	
+	@Test
+	public void update(){
+		orderIn.setOrderId(1);
+		orderIn.setDocu_number("sadsdasddasd");
+		orderInDAOImpl.update(orderIn);
+		
+	}
+	
+	@Test
+	public void findById(){
+		OrderIn result  = orderInDAOImpl.findById(1);
+		assertThat(result.getDocu_number(),is("docu2"));
+	}
+	
+	@Test
+	public void updateFlag(){
+		orderIn.setOrderId(1);
+		orderIn.setFlag(0);
+		orderInDAOImpl.updateFlag(orderIn);
+		OrderIn result  = orderInDAOImpl.findById(1);
+		assertThat(result.getFlag(),is(0));
+	}
+	
+	@Test
+	public void findAllByPaging(){
+		List<OrderIn> result = orderInDAOImpl.findAllByPaging(0, 5);
+		assertThat(result.size(),is(5));
 	}
 	
 }

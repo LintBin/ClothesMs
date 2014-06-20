@@ -5,22 +5,22 @@
 
 <hibernate-mapping>
 
-	<class name="com.entity.OrderIn" table="t_storage">
-		<id name="id" >
+	<class name="com.entity.OrderIn" table="t_orderIn">
+		<id name="orderId" >
 			<column name="id"></column>
 			<generator class="native"></generator>
 		</id>
 		
-		<property name="storage_Number" >
-			<column name="storage_number" not-null="true"></column>
+		<property name="docu_number" >
+			<column name="docu_number" not-null="true"></column>
 		</property>
 		
 		<property name="flag">
 			<column name="flag" not-null="true"></column>
 		</property>
 		
-		<property name="date">
-			<column name="in_date" not-null="true"></column>
+		<property name="in_time">
+			<column name="in_time" not-null="true"></column>
 		</property>
 		
 		<property name="source">
@@ -28,6 +28,6 @@
 		</property>
 		
 		<many-to-one name="manager" column="manager" cascade="none"  class="com.entity.Admin" not-null="true" lazy="false"></many-to-one>
-		<many-to-one name="wareHouse" column="warehouse_id" cascade="none"  class="com.entity.WareHouse" not-null="true" lazy="false"></many-to-one>
+		<many-to-one name="wareHouse" column="warehouseId" cascade="none"  class="com.entity.WareHouse" not-null="true" lazy="false"></many-to-one>
 	</class>
 </hibernate-mapping>

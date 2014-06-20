@@ -42,6 +42,7 @@
 				<value>com/entity/WareHouse.hbm.xml</value>
 				<value>com/entity/Clothes.hbm.xml</value>
 				<value>com/entity/Storage.hbm.xml</value>
+				<value>com/entity/OrderIn.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
